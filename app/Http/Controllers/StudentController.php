@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests;
 use App\Models\Student;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -15,8 +13,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $users = Student::all();
-        return view('stud_view',['users'=>$users]);
+        $student = Student::all();
+        return view('index', compact('student'));
     }
 
     /**
@@ -26,7 +24,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -37,7 +35,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeData = $request->validate([
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'email' => 'required|max:255',
+            'address' => 'required|max:255',
+        ]);
+        $student = Student::create($storeData);
+
+        return redirect('/students')->with('completed', 'Student has been saved!');
     }
 
     /**
@@ -59,7 +65,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        return view('edit', compact('student'));
     }
 
     /**
@@ -71,7 +78,14 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateData = $request->validate([
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'email' => 'required|max:255',
+            'address' => 'required|max:255',
+        ]);
+        Student::whereId($id)->update($updateData);
+        return redirect('/students')->with('completed', 'Student has been updated');
     }
 
     /**
@@ -82,6 +96,9 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::findOrFail($id);
+        $student->delete();
+
+        return redirect('/students')->with('completed', 'Student has been deleted');
     }
 }
