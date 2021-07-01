@@ -34,16 +34,32 @@
                     <input type="text" class="form-control" name="name" value="{{ $student->name }}"/>
                 </div>
                 <div class="form-group">
-                    <label for="surname">Email</label>
+                    <label for="surname">surname</label>
                     <input type="text" class="form-control" name="surname" value="{{ $student->surname }}"/>
                 </div>
                 <div class="form-group">
-                    <label for="email">Phone</label>
+                    <label for="user_id">user_id</label>
+                    <input type="numbers" class="form-control" name="user_id" value="{{ $student->user_id }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="email">email</label>
                     <input type="email" class="form-control" name="email" value="{{ $student->email }}"/>
                 </div>
                 <div class="form-group">
-                    <label for="address">Password</label>
+                    <label for="address">address</label>
                     <input type="text" class="form-control" name="address" value="{{ $student->address }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="birthdate">birthdate</label>
+                    <input type="text" class="form-control" name="birthdate" value="{{ $student->birthdate }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="sex">sex</label>
+                    <input type="text" class="form-control" name="sex" value="{{ $student->sex }}"/>
+                </div>
+                <div class="form-group">
+                    <label for="apartament">apartament</label>
+                    <input type="text" class="form-control" name="apartament" value="{{ $student->apartament }}"/>
                 </div>
                 <button type="submit" class="btn btn-block btn-danger">Update User</button>
             </form>

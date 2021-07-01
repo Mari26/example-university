@@ -38,8 +38,12 @@ class StudentController extends Controller
         $storeData = $request->validate([
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
+            'user_id' =>'required|max:255',
             'email' => 'required|max:255',
             'address' => 'required|max:255',
+            'birthdate' => 'required|max:255',
+            'sex'=>'required|max:255',
+            'apartament'=>'required|max:255'
         ]);
         $student = Student::create($storeData);
 
